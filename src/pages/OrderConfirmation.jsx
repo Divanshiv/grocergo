@@ -9,7 +9,7 @@ const OrderConfirmation = () => {
 
   if (!order) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-20 text-center">
+      <div className="max-w-[1600px] mx-auto px-4 py-20 text-center">
         <h2 className="text-2xl font-bold mb-4">Order not found</h2>
         <Link to="/" className="btn-primary">Return Home</Link>
       </div>

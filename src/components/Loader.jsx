@@ -32,7 +32,7 @@ export const CategorySkeleton = () => {
 
 export const DetailSkeleton = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-[1600px] mx-auto px-4 py-8">
       <div className="skeleton h-4 w-1/4 mb-8"></div>
       <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
         <div className="skeleton aspect-square rounded-3xl"></div>

@@ -50,7 +50,7 @@ const ProductListing = () => {
     (categoryParam ? 1 : 0) + (searchParam ? 1 : 0) + (sort ? 1 : 0);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6">
+    <div className="max-w-[1600px] mx-auto px-4 py-6">
       {/* ─── Breadcrumb ──────────────────────────── */}
       <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
         <Link to="/" className="hover:text-emerald-600 transition-colors">

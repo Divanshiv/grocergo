@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
 
 const NotFound = () => (
-  <div className="max-w-7xl mx-auto px-4 py-20 text-center">
+  <div className="max-w-[1600px] mx-auto px-4 py-20 text-center">
     <div className="max-w-md mx-auto">
       <div className="text-8xl mb-6">🥕</div>
       <h1 className="text-4xl font-extrabold text-gray-900 mb-3">

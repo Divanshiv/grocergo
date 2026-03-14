@@ -16,7 +16,7 @@ const CheckoutReview = () => {
   // If directly navigated to this page without filling the form, redirect back
   if (!checkoutData || cart.length === 0) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-20 text-center">
+      <div className="max-w-[1600px] mx-auto px-4 py-20 text-center">
         <h2 className="text-2xl font-bold mb-4">No order details found</h2>
         <Link to="/checkout" className="btn-primary">Go to Checkout Formulation</Link>
       </div>

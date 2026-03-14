@@ -26,7 +26,7 @@ const ProductDetail = () => {
 
   if (error || !product) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-20 text-center">
+      <div className="max-w-[1600px] mx-auto px-4 py-20 text-center">
         <div className="text-6xl mb-4">😕</div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">
           Product Not Found
@@ -54,7 +54,7 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6">
+    <div className="max-w-[1600px] mx-auto px-4 py-6">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
         <Link to="/" className="hover:text-emerald-600 transition-colors">

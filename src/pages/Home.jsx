@@ -58,7 +58,7 @@ const Home = () => {
     <div className="min-h-screen">
       {/* ─── Hero Banner Carousel ────────────────────── */}
       {banners.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 pt-6">
+        <section className="max-w-[1600px] mx-auto px-4 pt-6">
           <div className="relative rounded-3xl overflow-hidden h-56 md:h-72 lg:h-80">
             {banners.map((banner, idx) => (
               <div
@@ -106,7 +106,7 @@ const Home = () => {
       )}
 
       {/* ─── Features Strip ──────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-4 py-8">
+      <section className="max-w-[1600px] mx-auto px-4 py-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {features.map((feat, i) => (
             <div
@@ -128,7 +128,7 @@ const Home = () => {
       </section>
 
       {/* ─── Categories ──────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-4 pb-8">
+      <section className="max-w-[1600px] mx-auto px-4 pb-8">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-900">
@@ -158,7 +158,7 @@ const Home = () => {
       </section>
 
       {/* ─── Featured Products ───────────────────────── */}
-      <section className="max-w-7xl mx-auto px-4 pb-12">
+      <section className="max-w-[1600px] mx-auto px-4 pb-12">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-900">
@@ -188,7 +188,7 @@ const Home = () => {
       </section>
 
       {/* ─── CTA Banner ──────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-4 pb-12">
+      <section className="max-w-[1600px] mx-auto px-4 pb-12">
         <div className="bg-gradient-to-r from-emerald-600 to-teal-500 rounded-3xl p-8 md:p-12 text-center">
           <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
             Get Fresh Groceries Delivered

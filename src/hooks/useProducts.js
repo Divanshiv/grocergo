@@ -1,26 +1,33 @@
-import { useState, useEffect } from 'react';
-import api from '../services/api';
+import { useState, useEffect } from "react";
+import api from "../services/api";
 
 export const useProducts = (filters = {}) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const filtersStr = JSON.stringify(filters);
+
   useEffect(() => {
+    let cancelled = false;
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const { data } = await api.getProducts(filters);
-        setProducts(data);
         setError(null);
+        const parsedFilters = JSON.parse(filtersStr);
+        const { data } = await api.getProducts(parsedFilters);
+        if (!cancelled) setProducts(data);
       } catch (err) {
-        setError(err.message || 'Failed to fetch products');
+        if (!cancelled) setError(err.message);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
     fetchProducts();
-  }, [JSON.stringify(filters)]);
+    return () => {
+      cancelled = true;
+    };
+  }, [filtersStr]);
 
   return { products, loading, error };
 };
@@ -32,23 +39,26 @@ export const useProduct = (id) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchProductDetails = async () => {
-      if (!id) return;
+    let cancelled = false;
+    const fetchProduct = async () => {
       try {
         setLoading(true);
-        const { data } = await api.getProduct(id);
-        setProduct(data);
-        const { data: relatedData } = await api.getRelatedProducts(data.category, id);
-        setRelated(relatedData);
         setError(null);
+        const { data, related: rel } = await api.getProductById(id);
+        if (!cancelled) {
+          setProduct(data);
+          setRelated(rel);
+        }
       } catch (err) {
-        setError(err.message || 'Product not found');
-        setProduct(null);
+        if (!cancelled) setError(err.message);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
-    fetchProductDetails();
+    if (id) fetchProduct();
+    return () => {
+      cancelled = true;
+    };
   }, [id]);
 
   return { product, related, loading, error };
@@ -61,11 +71,10 @@ export const useCategories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        setLoading(true);
         const { data } = await api.getCategories();
         setCategories(data);
-      } catch (err) {
-        console.error('Failed to fetch categories:', err);
+      } catch {
+        // fail silently
       } finally {
         setLoading(false);
       }
@@ -78,24 +87,23 @@ export const useCategories = () => {
 
 export const useSearch = () => {
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [searching, setSearching] = useState(false);
 
   const search = async (query) => {
     if (!query.trim()) {
       setResults([]);
       return;
     }
+    setSearching(true);
     try {
-      setLoading(true);
-      const { data } = await api.getProducts({ search: query });
-      setResults(data.slice(0, 5));
-    } catch (err) {
-      console.error('Search failed:', err);
+      const { data } = await api.searchProducts(query);
+      setResults(data);
+    } catch {
       setResults([]);
     } finally {
-      setLoading(false);
+      setSearching(false);
     }
   };
 
-  return { results, search, loading, setResults };
+  return { results, searching, search, setResults };
 };
